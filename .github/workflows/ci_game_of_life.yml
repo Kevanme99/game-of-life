@@ -6,6 +6,9 @@ jobs:
   game-of-life-test:
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        java: [ '17',  '21']
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
@@ -14,7 +17,7 @@ jobs:
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
-          java-version: '17'
+          java-version: ${{ matrix.java }}
 
       - name: Set up Maven 3.8.2
         uses: stCarolas/setup-maven@v5
